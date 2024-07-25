@@ -1,0 +1,98 @@
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.comment-list {
+  list-style: none;
+  padding: 10px;
+  max-height: 200px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.comment-list li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: max-content;
+}
+
+.inputAndButtonWrapper {
+  position: relative;
+}
+
+.inputAndButtonWrapper button {
+  position: absolute;
+  top: 0;
+  right: -6px;
+}
+
+.commentInput {
+  width: 100%;
+  height: 33px;
+  margin-bottom: 15px;
+}
+
+.commentInput::placeholder {
+  padding-left: 10px;
+}
+
+.sent {
+  background-color: #d1e7dd;
+  text-align: right;
+  margin-left: auto;
+}
+
+.received {
+  background-color: #f8d7da;
+  text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+  .modal-content {
+    width: 95%;
+  }
+}

@@ -1,0 +1,737 @@
+.history {
+    background-color: transparent;
+}
+
+h2 {
+    color: #4a148c;
+    font-family: Poppins;
+}
+
+.container-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+.ticket-detail {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+.ticket-detail table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ticket-detail th,
+.ticket-detail td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #CCD2E3;
+}
+
+.ticket-detail th {
+    background-color: #fff;
+    color: #4C208C;
+    font-family: Poppins;
+    font-weight: 400;
+}
+
+.ticket-header-content img {
+    margin-top: 26px;
+    margin-right: 14px;
+}
+
+.ticket-header-content {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.homepage {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #f6f0ff;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow: auto;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f6f0ff;
+}
+
+.login-box {
+    background: #ffffff;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    height: auto;
+    border-radius: 30px;
+    transform: translateY(-10px);
+}
+
+
+.login-box h2 {
+    color: #232323;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 37px;
+    margin-top: 7px;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: #000000;
+    font-family: 'Rubik';
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.input-container {
+    margin-top: 32px;
+    margin-left: 20px;
+    margin-bottom: -15px;
+}
+
+.input-group input {
+    width: 88%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: #B7B7B7;
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle {
+    margin-left: -1.9rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.password-toggle img {
+    margin-top: 5px;
+    width: 13px;
+    height: 13px;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 0.8rem;
+    font-size: 10px;
+}
+
+.forgot-password a {
+    color: #4C208C;
+    margin-right: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-button {
+    width: 85%;
+    padding: 0.5rem;
+    border: none;
+    background: #49278e;
+    color: white;
+    margin-left: 23px;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 35px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.register {
+    font-family: 'Rubik';
+    margin-top: 6px;
+}
+
+.register p {
+    color: #B7B7B7;
+    margin-top: 6px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.register a {
+
+    color: #4C208C;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.request {
+    background-color: #fff;
+    padding: 20px;
+    width: 640px;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.request h2 {
+    color: #000;
+    margin-bottom: 20px;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+
+}
+
+.form-group div {
+    display: flex;
+    align-items: normal;
+    margin-bottom: 10px;
+}
+
+.form-group2 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    color: #000;
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input[type="text"] {
+    width: 94%;
+    height: 56px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 15px;
+    margin-right: 37px;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+.radio-option-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+button {
+    padding: 10px 20px;
+    background-color: #4a148c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    display: block;
+    margin-left: 10px;
+}
+
+.buttonWrapper .modalButton.process {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    display: block;
+    margin-left: 10px;
+    background-color: #ffc107;
+}
+
+.buttonWrapper .modalButton.closed {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    display: block;
+    margin-left: 10px;
+    background-color: #dc3545;
+}
+
+
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.back_button {
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #4C208C;
+    border-width: 1px;
+    border-color: #4C208C;
+    border-style: solid;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start;
+    display: block;
+    margin-left: 0;
+    width: 100px;
+}
+
+
+.ticket-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+
+.ticket-container h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4C208C;
+    margin: 0;
+}
+
+.ticket-container h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.ticket-container p {
+    font-size: 14px;
+    color: #B7B7B7;
+}
+
+.ticket-container a {
+    font-size: 14px;
+    color: #4C208C;
+    text-decoration: underline;
+}
+
+.date-time-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="date"],
+input[type="time"] {
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #4a148c;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+}
+
+.quantity-selector {
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    background-color: #ffffff;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar-links-container {
+    margin-top: 30%;
+}
+
+.sidebar-links {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.sidebar-link {
+    width: 100%;
+    color: white;
+    cursor: pointer;
+}
+
+.sidebar-item {
+    width: 70%;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    transition: background-color 0.3s, border 0.3s;
+    border-radius: 10px;
+}
+
+.sidebar-item img {
+    width: 25px;
+    height: 25px;
+    margin-right: 17px;
+}
+
+.sidebar-text {
+    font-size: 15px;
+    color: #B7B7B7;
+    font-family: Poppins;
+    font-weight: 400;
+}
+
+.sidebar-link.active .sidebar-item {
+    background-color: #4C208C;
+}
+
+.sidebar-link.active .sidebar-text {
+    color: #fff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f6f0ff;
+}
+
+.signup-box {
+    background: #ffffff;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 285px;
+    height: 320px;
+    border-radius: 30px;
+    margin-top: -10px;
+}
+
+.signup-box h2 {
+    color: #232323;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 41px;
+
+}
+
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+    margin-top: 22px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: #000000;
+    font-family: 'Rubik';
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: -10px;
+}
+
+.input-container {
+    margin-top: 22px;
+    margin-left: 20px;
+    margin-bottom: -15px;
+}
+
+.input-group input {
+    width: 88%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle {
+    margin-left: -5.2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.password-toggle img {
+    margin-top: 5px;
+    width: 13px;
+    height: 13px;
+}
+
+.signup-button {
+    width: 85%;
+    padding: 0.5rem;
+    border: none;
+    background: #49278e;
+    color: white;
+    font-size: 1rem;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 35px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 25px;
+    margin-bottom: 6px;
+    margin-left: 24px;
+
+}
+
+.signup-button:hover {
+    background: #3a1f6f;
+}
+
+.login {
+    font-family: 'Rubik';
+    margin-top: 6px;
+}
+
+.login p {
+    color: #B7B7B7;
+    margin-top: 6px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.login a {
+    color: #4C208C;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    font-size: 11px;
+    margin-top: -15px;
+    margin-bottom: 3px;
+    text-align: left;
+}
+
+.top-banner {
+    width: auto;
+    height: 57px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-banner-left {
+    display: flex;
+    flex-direction: row;
+    /* border */
+}
+
+.top-banner-left h1 {
+    color: #000;
+    font-size: 19px;
+    font-family: Poppins;
+    font-weight: 500;
+    margin-right: 20px;
+
+}
+
+.top-banner-left h2 {
+    color: #000;
+    font-size: 11px;
+    font-family: Poppins;
+    margin-top: 18px;
+}
+
+.top-banner-left img {
+    width: 13px;
+    height: 13px;
+    margin-top: 20px;
+    margin-right: 7px
+}
+
+.bell-icon {
+    width: 24px;
+    height: 21px;
+    margin-right: 10px
+}
+
+.dropdown-arrow-icon {
+    width: 15px;
+    height: 10px;
+    margin-right: 30px;
+    margin-left: 10px;
+}
+
+.top-banner-right {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.top-banner-right h1 {
+    font-size: 14px;
+    font-family: Poppins;
+    font-weight: 500;
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.dropdown-arrow {
+    margin-left: 5px;
+}
+
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ticket-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.bullet.ticket {
+    background-color: #4C208C;
+}
+
+.bullet.opened {
+    background-color: #4CAF50;
+}
+
+.bullet.closed {
+    background-color: #dc3545;
+}
+
+.bullet.processing {
+    background-color: #ffc107;
+}
+
+
+.status {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 14px;
+    margin-right: 27px;
+    font-family: 'Poppins';
+    text-transform: capitalize;
+}
+
+.status.opened {
+    color: #4CAF50;
+}
+
+.status.closed {
+    color: #dc3545;
+}
+
+.status.processing {
+    color: #ffc107;
+}
+
+.ticket-dot {
+    display: flex;
+    flex-direction: row;
+}
