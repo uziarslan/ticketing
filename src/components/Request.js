@@ -47,7 +47,7 @@ const Request = ({ mainPage, subPages }) => {
     }
   };
 
-  if (!mainPage || !subPages) return null;
+  // if (!mainPage || !subPages) return null;
 
   return (
     <div className="request">
