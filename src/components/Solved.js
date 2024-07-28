@@ -1,26 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../assets/css/styles.min.css";
-import axios from "axios";
-
-const END_POINT = process.env.REACT_APP_END_POINT;
+import axiosInstanceAdmin from "../services/axiosInstanceAdmin";
+import { AuthContext } from "../Context/AuthContext";
+import Loader from "./Loader";
 
 const Solved = () => {
   const [tickets, setTickets] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({});
+  const { isLoading, setIsLoading } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchTicket = async () => {
       try {
-        const response = await axios.get(`${END_POINT}/get-all-tickets`);
+        setIsLoading(true);
+        const response = await axiosInstanceAdmin.get("/get-all-tickets");
         setTickets(response.data.tickets);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
     };
-
     fetchTicket();
-  }, [tickets]);
+  }, []);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -35,6 +37,10 @@ const Solved = () => {
     "Please indicate your name (or the requester’s name, if different than your name).",
     "requestType",
   ];
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!tickets.length) return null;
 
@@ -80,7 +86,6 @@ const Solved = () => {
           </tbody>
         </table>
       </div>
-
       {isModalOpen && (
         <div className="modal" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

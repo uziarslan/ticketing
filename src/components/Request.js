@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "../assets/css/styles.min.css";
-import axios from "axios";
-
-const END_POINT = process.env.REACT_APP_END_POINT;
+import axiosInstance from "../services/axiosInstance";
 
 const Request = ({ mainPage, subPages }) => {
   const [step, setStep] = useState(1);
@@ -38,11 +36,7 @@ const Request = ({ mainPage, subPages }) => {
   // Handle form submission
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(
-        `${END_POINT}/create-ticket`,
-        formData,
-        { withCredentials: true }
-      );
+      const response = await axiosInstance.post("/create-ticket", formData);
       if (response.status === 200) {
         setStep(1);
         setSelectedRequestType(null);

@@ -1,25 +1,27 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import "../assets/css/styles.min.css";
-import axios from "axios";
+import axiosInstance from "../services/axiosInstance";
 import { Link } from "react-router-dom";
-
-const END_POINT = process.env.REACT_APP_END_POINT;
+import { AuthContext } from "../Context/AuthContext";
+import Loader from "./Loader";
 
 const History = ({ user }) => {
   const [tickets, setTickets] = useState([]);
   const [comment, setComment] = useState("");
   const [isViewComment, setIsViewComment] = useState(null);
+  const { isLoading, setIsLoading } = useContext(AuthContext);
   const commentsEndRef = useRef(null);
 
   useEffect(() => {
     const fetchTicket = async () => {
       try {
-        const response = await axios.get(`${END_POINT}/get-user-tickets`, {
-          withCredentials: true,
-        });
+        // setIsLoading(true);
+        const response = await axiosInstance.get("/get-user-tickets");
         setTickets(response.data);
+        // setIsLoading(false);
       } catch (error) {
         console.error(error);
+        // setIsLoading(false);
       }
     };
 
@@ -43,7 +45,7 @@ const History = ({ user }) => {
       return;
     }
     try {
-      const response = await axios.post(`${END_POINT}/add-comment/${id}`, {
+      const response = await axiosInstance.post(`/add-comment/${id}`, {
         comment,
         sender: user._id,
       });
@@ -58,6 +60,10 @@ const History = ({ user }) => {
       console.error(error);
     }
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!tickets.length || !user) return null;
 

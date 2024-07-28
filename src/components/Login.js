@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/styles.min.css";
-import { useAuth } from "../Context/AuthContext";
+import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
+import Loader from "./Loader";
 
 const END_POINT = process.env.REACT_APP_END_POINT;
 
@@ -11,7 +12,7 @@ const Login = () => {
   const [otp, setOtp] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const navigate = useNavigate();
-  const { userLogin } = useAuth();
+  const { login, register, isLoading } = useContext(AuthContext);
 
   const handleOtp = async (e) => {
     e.preventDefault();
@@ -27,8 +28,8 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        userLogin(username);
-        navigate(response.data.callBack);
+        await login({ username });
+        navigate("/employeeportal");
       }
     } catch (error) {
       console.error(error);
@@ -37,24 +38,19 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = {
-      username,
-    };
-
     try {
-      const response = await axios.post(`${END_POINT}/register`, formData);
-      if (response.status === 200) {
-        setEmailSent(true);
-      }
+      await register({ username });
+      setEmailSent(true);
     } catch (error) {
       console.error(error);
+      alert("Error logging in user");
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-box">
+        {isLoading && <Loader />}
         <h2>Login to your account</h2>
         {!emailSent ? (
           <form onSubmit={handleSubmit}>

@@ -1,94 +1,89 @@
-import React, { createContext, useContext, useState } from "react";
-import axiosInstance from "../Utils/axiosInstance";
+import React, { createContext, useState, useEffect } from "react";
+import authService from "../services/authService";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [admin, setAdmin] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-export const AuthProvider = ({ children }) => {
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(
-    !!localStorage.getItem("adminToken")
-  );
+  useEffect(() => {
+    const fetchUser = async () => {
+      const loggedInUser = await authService.getUser();
+      if (
+        loggedInUser === null &&
+        window.location.pathname === "/employeeportal"
+      ) {
+        window.location.href = "/";
+        return;
+      }
+      setUser(loggedInUser);
+    };
 
-  const [isUserAuthenticated, setIsUserAuthenticated] = useState(
-    !!localStorage.getItem("userToken")
-  );
+    const fetchAdmin = async () => {
+      const loggedInAdmin = await authService.getAdmin();
+      if (
+        loggedInAdmin === null &&
+        window.location.pathname === "/adminportal"
+      ) {
+        window.location.href = "/admin/login";
+        return;
+      }
+      setAdmin(loggedInAdmin);
+    };
 
-  const adminLogin = async (username) => {
-    try {
-      const { data } = await axiosInstance.post("/admin/login", {
-        username,
-      });
-      localStorage.setItem("adminToken", data.token);
-      setIsAdminAuthenticated(true);
-    } catch (error) {
-      console.error(
-        "Admin login failed",
-        error.response?.data?.message || "An error occurred"
-      );
-      throw error;
-    }
+    fetchUser();
+    fetchAdmin();
+  }, []);
+
+  const login = async (userData) => {
+    setIsLoading(true);
+    await authService.login(userData);
+    const loggedInUser = await authService.getUser();
+    setUser(loggedInUser);
+    setIsLoading(false);
   };
 
-  const userLogin = async (username) => {
-    try {
-      const { data } = await axiosInstance.post("/login", {
-        username,
-      });
-      localStorage.setItem("userToken", data.token);
-      setIsUserAuthenticated(true);
-    } catch (error) {
-      console.error(
-        "User login failed",
-        error.response?.data?.message || "An error occurred"
-      );
-      throw error;
-    }
+  const adminLogin = async (adminData) => {
+    setIsLoading(true);
+    await authService.adminLogin(adminData);
+    const loggedInAdmin = await authService.getAdmin();
+    setAdmin(loggedInAdmin);
+    setIsLoading(false);
   };
 
-  const adminLogout = async () => {
-    try {
-      await axiosInstance.get("/admin/logout"); // Call backend logout endpoint
-      localStorage.removeItem("adminToken");
-      setIsAdminAuthenticated(false);
-    } catch (error) {
-      console.error("Admin logout failed", error);
-    }
+  const register = async (userData) => {
+    setIsLoading(true);
+    await authService.register(userData);
+    const registeredUser = await authService.getUser();
+    setUser(registeredUser);
+    setIsLoading(false);
   };
 
-  const userLogout = async () => {
-    try {
-      await axiosInstance.get(`${process.env.REACT_APP_END_POINT}/logout`); // Call backend logout endpoint
-      localStorage.removeItem("userToken");
-      setIsUserAuthenticated(false);
-    } catch (error) {
-      console.error("User logout failed", error);
-    }
+  const logout = () => {
+    authService.logout();
+    setUser(null);
+    setAdmin(null);
+    window.location.href = "/";
   };
-  const requestPasswordReset = async (email) => {
-    try {
-      await axiosInstance.post("/reset-password", { email });
-    } catch (error) {
-      console.error(
-        "Password reset request failed",
-        error.response?.data?.message || "An error occurred"
-      );
-      throw error;
-    }
-  };
+
   return (
     <AuthContext.Provider
       value={{
-        isAdminAuthenticated,
-        isUserAuthenticated,
+        user,
+        isLoading,
+        login,
+        register,
+        logout,
         adminLogin,
-        userLogin,
-        adminLogout,
-        userLogout,
-        requestPasswordReset,
+        setIsLoading,
+        admin,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
+
+export default AuthProvider;

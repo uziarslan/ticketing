@@ -1,20 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/styles.min.css";
-import { useAuth } from "../Context/AuthContext";
-import axios from "axios";
-
-const END_POINT = process.env.REACT_APP_END_POINT;
+import { AuthContext } from "../Context/AuthContext";
 
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
-  const { adminLogin } = useAuth();
+  const { adminLogin } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await adminLogin(username);
+      await adminLogin({ username });
       navigate("/adminportal");
     } catch (error) {
       console.error(error);

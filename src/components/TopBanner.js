@@ -11,6 +11,8 @@ const TopBanner = ({ title, user }) => {
   // Get the current date
   const currentDate = new Date();
 
+  if (!user) return null;
+
   return (
     <div className="top-banner">
       <div className="top-banner-left">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import TopBanner from "./TopBanner";
@@ -6,28 +6,18 @@ import Request from "./Request";
 import History from "./History";
 import "../assets/css/styles.min.css";
 import axios from "axios";
+import { AuthContext } from "../Context/AuthContext";
 
 const END_POINT = process.env.REACT_APP_END_POINT;
 
 const EmployeePortal = () => {
-  const [user, setUser] = useState(null);
   const [mainPage, setMainPage] = useState(null);
   const [subPages, setSubPages] = useState(null);
   const [content, setContent] = useState("request");
   const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(`${END_POINT}/api/auth/current_user`, {
-          withCredentials: true,
-        });
-        setUser(response.data);
-      } catch (error) {
-        navigate("/");
-      }
-    };
-
     const seedData = async () => {
       try {
         const response = await axios.get(`${END_POINT}/seed`, {
@@ -41,7 +31,6 @@ const EmployeePortal = () => {
     };
 
     return () => {
-      fetchUser();
       seedData();
     };
   }, [navigate]);

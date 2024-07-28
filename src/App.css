@@ -96,3 +96,27 @@ button {
     width: 95%;
   }
 }
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 100%;
+}
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, #4C208C 95%, #00000000) 50% 1px/12px 12px no-repeat,
+    radial-gradient(farthest-side, #ffffff00 calc(100% - 14px), #ccc 0);
+  animation: l9 2s infinite linear;
+}
+
+@keyframes l9 {
+  to {
+    transform: rotate(1turn)
+  }
+}

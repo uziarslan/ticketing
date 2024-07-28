@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import "../assets/css/styles.min.css";
-import axios from "axios";
-
-const END_POINT = process.env.REACT_APP_END_POINT;
+import axiosInstanceAdmin from "../services/axiosInstanceAdmin";
+import { AuthContext } from "../Context/AuthContext";
+import Loader from "./Loader";
 
 const Ticket = () => {
   const [tickets, setTickets] = useState([]);
@@ -10,19 +10,23 @@ const Ticket = () => {
   const [modalContent, setModalContent] = useState({});
   const [comment, setComment] = useState("");
   const commentsEndRef = useRef(null);
-
-  const fetchTicket = async () => {
-    try {
-      const response = await axios.get(`${END_POINT}/get-all-tickets`);
-      setTickets(response.data.openedTickets);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { isLoading, setIsLoading } = useContext(AuthContext);
 
   useEffect(() => {
+    const fetchTicket = async () => {
+      try {
+        // setIsLoading(true);
+        const response = await axiosInstanceAdmin.get("/get-all-tickets");
+        setTickets(response.data.openedTickets);
+        // setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        // setIsLoading(false);
+      }
+    };
+
     fetchTicket();
-  }, [tickets]);
+  }, []);
 
   useEffect(() => {
     if (commentsEndRef.current) {
@@ -41,7 +45,7 @@ const Ticket = () => {
 
   const handleChangeStatus = async (ticketId, status) => {
     try {
-      const response = await axios.post(`${END_POINT}/change/${ticketId}`, {
+      const response = await axiosInstanceAdmin.post(`/change/${ticketId}`, {
         status,
       });
       if (response.status === 200) {
@@ -58,8 +62,8 @@ const Ticket = () => {
       return;
     }
     try {
-      const response = await axios.post(
-        `${END_POINT}/add-comment/${modalContent._id}`,
+      const response = await axiosInstanceAdmin.post(
+        `/add-comment/${modalContent._id}`,
         { comment, sender: null }
       );
       if (response.status === 200) {
@@ -74,6 +78,10 @@ const Ticket = () => {
     "Please indicate your name (or the requester’s name, if different than your name).",
     "requestType",
   ];
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!tickets.length) return null;
 
