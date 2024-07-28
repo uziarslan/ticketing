@@ -8,21 +8,21 @@ const Solved = () => {
   const [tickets, setTickets] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({});
-  const { isLoading, setIsLoading } = useContext(AuthContext);
+  const { isLoading } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchTicket = async () => {
       try {
-        setIsLoading(true);
+        // setIsLoading(true);
         const response = await axiosInstanceAdmin.get("/get-all-tickets");
         setTickets(response.data.tickets);
-        setIsLoading(false);
+        // setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
     };
     fetchTicket();
-  }, []);
+  }, [tickets]);
 
   const closeModal = () => {
     setIsModalOpen(false);

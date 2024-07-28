@@ -15,7 +15,7 @@ const EmployeePortal = () => {
   const [subPages, setSubPages] = useState(null);
   const [content, setContent] = useState("request");
   const navigate = useNavigate();
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const seedData = async () => {

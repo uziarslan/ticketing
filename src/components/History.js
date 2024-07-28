@@ -9,7 +9,7 @@ const History = ({ user }) => {
   const [tickets, setTickets] = useState([]);
   const [comment, setComment] = useState("");
   const [isViewComment, setIsViewComment] = useState(null);
-  const { isLoading, setIsLoading } = useContext(AuthContext);
+  const { isLoading } = useContext(AuthContext);
   const commentsEndRef = useRef(null);
 
   useEffect(() => {

@@ -10,7 +10,7 @@ const Ticket = () => {
   const [modalContent, setModalContent] = useState({});
   const [comment, setComment] = useState("");
   const commentsEndRef = useRef(null);
-  const { isLoading, setIsLoading } = useContext(AuthContext);
+  const { isLoading } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchTicket = async () => {
