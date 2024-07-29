@@ -6,6 +6,7 @@ const Request = ({ mainPage, subPages }) => {
   const [step, setStep] = useState(1);
   const [selectedRequestType, setSelectedRequestType] = useState(null);
   const [formData, setFormData] = useState({});
+  const [showAdditionalOptions, setShowAdditionalOptions] = useState(false);
 
   const handleNextClick = () => {
     setStep(2);
@@ -33,6 +34,10 @@ const Request = ({ mainPage, subPages }) => {
     }));
   };
 
+  const toggleAdditionalOptions = () => {
+    setShowAdditionalOptions((prevState) => !prevState);
+  };
+
   // Handle form submission
   const handleSubmit = async () => {
     try {
@@ -41,6 +46,7 @@ const Request = ({ mainPage, subPages }) => {
         setStep(1);
         setSelectedRequestType(null);
         setFormData({});
+        setShowAdditionalOptions(false);
       }
     } catch (error) {
       console.error(error);
@@ -52,124 +58,173 @@ const Request = ({ mainPage, subPages }) => {
   return (
     <div className="request">
       <h2>Create your ticket</h2>
-      {step === 1
-        ? mainPage.map((content, index) => (
-            <div className="form-group" key={index}>
-              <label>{content.heading}</label>
-              {content.type === "text" ? (
-                <input
-                  type="text"
-                  name={content.heading}
-                  onChange={(e) => handleInputChange(e, content)}
-                />
-              ) : content.type === "radio" ? (
-                <div className="radio-option-group">
-                  {content.options.map((option, idx) => (
-                    <div key={idx}>
-                      <input
-                        type="radio"
-                        id={option}
-                        name="requestType"
-                        value={option}
-                        onChange={handleRadioChange}
-                      />
-                      <label htmlFor={option}>{option}</label>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-          ))
-        : selectedRequestType &&
-          subPages[selectedRequestType].map((content, index) => (
-            <div className="form-group" key={index}>
-              <label>{content.heading}</label>
-              {content.subHeading && (
-                <label style={{ fontSize: "12px" }}>{content.subHeading}</label>
-              )}
-              {content.type === "text" && (
-                <input
-                  type="text"
-                  name={content.heading}
-                  onChange={(e) => handleInputChange(e, content)}
-                />
-              )}
-              {content.type === "date" && (
-                <input
-                  type="date"
-                  name={content.heading}
-                  onChange={(e) => handleInputChange(e, content)}
-                />
-              )}
-              {content.type === "time" && (
-                <input
-                  type="time"
-                  name={content.heading}
-                  onChange={(e) => handleInputChange(e, content)}
-                />
-              )}
-              {content.type === "radio" && (
-                <div className="radio-option-group">
-                  {content.options.map((option, idx) => (
-                    <div key={idx}>
-                      <input
-                        type="radio"
-                        id={option}
-                        name={content.heading}
-                        value={option}
-                        onChange={(e) => handleInputChange(e, content)}
-                      />
-                      <label htmlFor={option}>{option}</label>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {content.type === "select" && (
-                <select
-                  name={content.heading}
-                  onChange={(e) => handleInputChange(e, content)}
-                >
-                  {content.options.map((option, idx) => (
-                    <option key={idx} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              )}
-              {content.type === "checkbox" && (
-                <div className="checkbox-option-group">
-                  {content.options.map((option, idx) => (
-                    <div key={idx}>
-                      <input
-                        type="checkbox"
-                        id={option}
-                        name={option}
-                        onChange={(e) => handleInputChange(e, content)}
-                      />
-                      <label htmlFor={option}>{option}</label>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
       {step === 1 && (
-        <button
-          disabled={!selectedRequestType}
-          type="button"
-          onClick={handleNextClick}
-        >
-          Next
-        </button>
+        <>
+          <div className="form-group">
+            <label>
+              Please indicate your name (or the requester’s name, if different
+              than your name).
+            </label>
+            <input
+              type="text"
+              name="requesterName"
+              onChange={handleInputChange}
+            />
+          </div>
+          
+          <div className="first_row">
+            <div className="form-group">
+              <label>Name</label>
+              <input type="text" name="name" onChange={handleInputChange} />
+              <label>NetID</label>
+              <input type="text" name="netID" onChange={handleInputChange} />
+            </div>
+
+            <div className="form-group">
+              <label>Location</label>
+              <input type="text" name="location" onChange={handleInputChange} />
+              <label>Telephone No.</label>
+              <input type="text" name="telephoneNo" onChange={handleInputChange} />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Subject</label>
+            <input type="text" name="subject" onChange={handleInputChange} />
+          </div>
+
+          <div className="form-group">
+            <label>Description</label>
+            <textarea 
+              name="description" 
+              onChange={handleInputChange} 
+              className="auto-resize-textarea font-family"
+              />
+          </div>
+
+
+
+          <button type="button" onClick={toggleAdditionalOptions}>
+            {showAdditionalOptions ? '-' : '+'}
+          </button>
+
+          {showAdditionalOptions && (
+            <div className="form-group">
+              <label>
+                Please indicate the type of request/support you require, from the
+                options below. Don’t see an option that suits best your need?
+                Please select other and provide as much detail as possible.
+              </label>
+              {mainPage[1].options.map((option, idx) => (
+                <div key={idx}>
+                  <input
+                    type="radio"
+                    id={option}
+                    name="requestType"
+                    value={option}
+                    onChange={handleRadioChange}
+                  />
+                  <label htmlFor={option}>{option}</label>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="button-group">
+            <button
+              disabled={!selectedRequestType}
+              type="button"
+              onClick={handleNextClick}
+            >
+              Next
+            </button>
+          </div>
+        </>
       )}
+
       {step === 2 && (
         <>
-          <button type="button" onClick={handleBackClick}>
-            Back
-          </button>
-          <button type="button" onClick={handleSubmit}>
-            Submit
-          </button>
+          {selectedRequestType &&
+            subPages[selectedRequestType].map((content, index) => (
+              <div className="form-group" key={index}>
+                <label>{content.heading}</label>
+                {content.subHeading && (
+                  <label style={{ fontSize: "12px" }}>{content.subHeading}</label>
+                )}
+                {content.type === "text" && (
+                  <input
+                    type="text"
+                    name={content.heading}
+                    onChange={(e) => handleInputChange(e, content)}
+                  />
+                )}
+                {content.type === "date" && (
+                  <input
+                    type="date"
+                    name={content.heading}
+                    onChange={(e) => handleInputChange(e, content)}
+                  />
+                )}
+                {content.type === "time" && (
+                  <input
+                    type="time"
+                    name={content.heading}
+                    onChange={(e) => handleInputChange(e, content)}
+                  />
+                )}
+                {content.type === "radio" && (
+                  <div className="radio-option-group">
+                    {content.options.map((option, idx) => (
+                      <div key={idx}>
+                        <input
+                          type="radio"
+                          id={option}
+                          name={content.heading}
+                          value={option}
+                          onChange={(e) => handleInputChange(e, content)}
+                        />
+                        <label htmlFor={option}>{option}</label>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {content.type === "select" && (
+                  <select
+                    name={content.heading}
+                    onChange={(e) => handleInputChange(e, content)}
+                  >
+                    {content.options.map((option, idx) => (
+                      <option key={idx} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                )}
+                {content.type === "checkbox" && (
+                  <div className="checkbox-option-group">
+                    {content.options.map((option, idx) => (
+                      <div key={idx}>
+                        <input
+                          type="checkbox"
+                          id={option}
+                          name={option}
+                          onChange={(e) => handleInputChange(e, content)}
+                        />
+                        <label htmlFor={option}>{option}</label>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          <div className="button-group">
+            <button type="button" onClick={handleBackClick}>
+              Back
+            </button>
+            <button type="button" onClick={handleSubmit}>
+              Submit
+            </button>
+          </div>
         </>
       )}
     </div>
