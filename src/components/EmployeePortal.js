@@ -5,10 +5,8 @@ import TopBanner from "./TopBanner";
 import Request from "./Request";
 import History from "./History";
 import "../assets/css/styles.min.css";
-import axios from "axios";
+import axiosInstance from "../services/axiosInstance";
 import { AuthContext } from "../Context/AuthContext";
-
-const END_POINT = process.env.REACT_APP_END_POINT;
 
 const EmployeePortal = () => {
   const [mainPage, setMainPage] = useState(null);
@@ -20,9 +18,7 @@ const EmployeePortal = () => {
   useEffect(() => {
     const seedData = async () => {
       try {
-        const response = await axios.get(`${END_POINT}/seed`, {
-          withCredentials: true,
-        });
+        const response = await axiosInstance.get("/seed");
         setMainPage(response.data.mainPage);
         setSubPages(response.data.subPages);
       } catch (error) {
