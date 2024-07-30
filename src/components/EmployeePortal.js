@@ -20,6 +20,7 @@ const EmployeePortal = () => {
     const seedData = async () => {
       try {
         const response = await axiosInstance.get("/seed");
+        console.log(response);
         setMainPage(response.data.mainPage);
         setSubPages(response.data.subPages);
       } catch (error) {
