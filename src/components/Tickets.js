@@ -144,11 +144,14 @@ const Ticket = () => {
               value={assignedTo}
               onChange={(e) => setAssignedTo(e.target.value)}
             >
-              <option value="Person 1">Person 1</option>
-              <option value="Person 2">Person 2</option>
-              <option value="Person 3">Person 3</option>
-              <option value="Person 4">Person 4</option>
-              <option value="Person 5">Person 5</option>
+              <option value="Dexter Hazelton">Dexter Hazelton</option>
+              <option value="Kushal Kothari">Kushal Kothari</option>
+              <option value="Nikhil Pujari">Nikhil Pujari</option>
+              <option value="Kiran Raj">Kiran Raj</option>
+              <option value="Vishnu Vardhan Naidu Yasarapu">
+                Vishnu Vardhan Naidu Yasarapu
+              </option>
+              <option value="Bhanu Thipparthi">Bhanu Thipparthi</option>
             </select>
             <hr />
             <div className="comment-section">
