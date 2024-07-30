@@ -7,13 +7,14 @@ import History from "./History";
 import "../assets/css/styles.min.css";
 import axiosInstance from "../services/axiosInstance";
 import { AuthContext } from "../Context/AuthContext";
+import authService from "../services/authService";
 
 const EmployeePortal = () => {
   const [mainPage, setMainPage] = useState(null);
   const [subPages, setSubPages] = useState(null);
   const [content, setContent] = useState("request");
   const navigate = useNavigate();
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const seedData = async () => {
@@ -40,7 +41,7 @@ const EmployeePortal = () => {
         <TopBanner
           title="Wasserman Staff Tech Support & Event Setup"
           user={user}
-          logout={logout}
+          logout={authService.logout}
         />
         <div className="content">
           {content === "request" && (

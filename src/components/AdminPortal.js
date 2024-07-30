@@ -5,10 +5,11 @@ import Solved from "./Solved";
 import "../assets/css/styles.min.css";
 import Ticket from "./Tickets";
 import { AuthContext } from "../Context/AuthContext";
+import authService from "../services/authService";
 
 const AdminPortal = () => {
   const [content, setContent] = useState("request");
-  const { admin, logout } = useContext(AuthContext);
+  const { admin } = useContext(AuthContext);
 
   return (
     <div className="homepage">
@@ -21,7 +22,7 @@ const AdminPortal = () => {
         <TopBanner
           title="Wasserman Staff Tech Support & Event Setup"
           user={admin}
-          logout={logout}
+          logout={authService.logout}
         />
         <div className="content">
           {content === "request" && <Ticket />}
