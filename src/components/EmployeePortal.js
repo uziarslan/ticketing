@@ -28,10 +28,8 @@ const EmployeePortal = () => {
       }
     };
 
-    return () => {
-      seedData();
-    };
-  }, [navigate]);
+    seedData();
+  }, [mainPage, subPages]);
 
   if (!user) return null;
 
