@@ -4,11 +4,20 @@ import axiosInstance from "../services/axiosInstance";
 
 const Request = ({ mainPage, subPages }) => {
   const [step, setStep] = useState(1);
-  const [selectedRequestType, setSelectedRequestType] = useState(null);
-  const [formData, setFormData] = useState({});
+  const [selectedRequestType, setSelectedRequestType] = useState(false);
+  const [formData, setFormData] = useState({
+    requesterName: "",
+    telephone: "",
+    location: "Brooklyn", // default value
+    subject: "",
+    description: "",
+  });
   const [showAdditionalOptions, setShowAdditionalOptions] = useState(false);
 
   const handleNextClick = () => {
+    if (!formData.requesterName) {
+      return;
+    }
     setStep(2);
   };
 
@@ -38,14 +47,29 @@ const Request = ({ mainPage, subPages }) => {
     setShowAdditionalOptions((prevState) => !prevState);
   };
 
+  const resetmainPage = () => {
+    setFormData({});
+    setFormData({
+      requesterName: "",
+      telephone: "",
+      location: "Brooklyn", // reset to default value
+      subject: "",
+      description: "",
+    });
+  };
+
   // Handle form submission
   const handleSubmit = async () => {
+    if (!formData.requesterName) {
+      return;
+    }
     try {
       const response = await axiosInstance.post("/create-ticket", formData);
       if (response.status === 200) {
+        console.log(formData);
         setStep(1);
-        setSelectedRequestType(null);
-        setFormData({});
+        resetmainPage();
+        setSelectedRequestType(false);
         setShowAdditionalOptions(false);
       }
     } catch (error) {
@@ -68,52 +92,70 @@ const Request = ({ mainPage, subPages }) => {
             <input
               type="text"
               name="requesterName"
+              value={formData.requesterName}
               onChange={handleInputChange}
             />
           </div>
-          
+
           <div className="first_row">
             <div className="form-group">
-              <label>Name</label>
-              <input type="text" name="name" onChange={handleInputChange} />
-              <label>NetID</label>
-              <input type="text" name="netID" onChange={handleInputChange} />
+              <label>Telephone</label>
+              <input
+                type="text"
+                name="telephone"
+                value={formData.telephone}
+                onChange={handleInputChange}
+              />
             </div>
-
             <div className="form-group">
               <label>Location</label>
-              <input type="text" name="location" onChange={handleInputChange} />
-              <label>Telephone No.</label>
-              <input type="text" name="telephoneNo" onChange={handleInputChange} />
+              <select
+                name="location"
+                value={formData.location}
+                onChange={(e) => handleInputChange(e)}
+              >
+                <option value="Brooklyn">Brooklyn</option>
+                <option value="Union Square">Union Square</option>
+              </select>
             </div>
           </div>
 
-          <div className="form-group">
-            <label>Subject</label>
-            <input type="text" name="subject" onChange={handleInputChange} />
-          </div>
+          {!showAdditionalOptions && (
+            <>
+              <div className="form-group">
+                <label>Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                />
+              </div>
 
-          <div className="form-group">
-            <label>Description</label>
-            <textarea 
-              name="description" 
-              onChange={handleInputChange} 
-              className="auto-resize-textarea font-family"
-              />
-          </div>
-
-
-
+              <div className="form-group">
+                <label>Description</label>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  className="auto-resize-textarea font-family"
+                />
+              </div>
+            </>
+          )}
           <button type="button" onClick={toggleAdditionalOptions}>
-            {showAdditionalOptions ? '-' : '+'}
+            {showAdditionalOptions
+              ? "Add Subject or Description"
+              : "Explore more"}
           </button>
 
           {showAdditionalOptions && (
             <div className="form-group">
               <label>
-                Please indicate the type of request/support you require, from the
-                options below. Don’t see an option that suits best your need?
-                Please select other and provide as much detail as possible.
+                Please indicate the type of request/support you require, from
+                the options below. Don’t see an option that suits best your
+                need? Please select other and provide as much detail as
+                possible.
               </label>
               {mainPage[1].options.map((option, idx) => (
                 <div key={idx}>
@@ -131,13 +173,15 @@ const Request = ({ mainPage, subPages }) => {
           )}
 
           <div className="button-group">
-            <button
-              disabled={!selectedRequestType}
-              type="button"
-              onClick={handleNextClick}
-            >
-              Next
-            </button>
+            {!showAdditionalOptions ? (
+              <button type="button" onClick={handleSubmit}>
+                Submit
+              </button>
+            ) : (
+              <button type="button" onClick={handleNextClick}>
+                Next
+              </button>
+            )}
           </div>
         </>
       )}
@@ -149,7 +193,9 @@ const Request = ({ mainPage, subPages }) => {
               <div className="form-group" key={index}>
                 <label>{content.heading}</label>
                 {content.subHeading && (
-                  <label style={{ fontSize: "12px" }}>{content.subHeading}</label>
+                  <label style={{ fontSize: "12px" }}>
+                    {content.subHeading}
+                  </label>
                 )}
                 {content.type === "text" && (
                   <input

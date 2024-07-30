@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../assets/css/styles.min.css";
 
-const TopBanner = ({ title, user }) => {
+const TopBanner = ({ title, user, logout }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   // Function to format the date as "Day, DD Month"
@@ -18,14 +18,6 @@ const TopBanner = ({ title, user }) => {
     setDropdownOpen(!isDropdownOpen);
   };
 
-  // Handle logout functionality
-  const handleLogout = () => {
-    // Implement your logout logic here
-    console.log('Logging out...');
-    // Example: Clear tokens, redirect to login page, etc.
-    // window.location.href = '/login'; // Redirect to login page
-  };
-
   if (!user) return null;
 
   return (
@@ -36,18 +28,17 @@ const TopBanner = ({ title, user }) => {
         <h2>{formatDate(currentDate)}</h2>
       </div>
       <div className="top-banner-right">
-        <div className="user-info">
+        <div onClick={toggleDropdown} className="user-info">
           <img src="bellicon.png" alt="Bell Icon" className="bell-icon" />
           <h1>{user.username}</h1>
           <img
             src="dropdown_arrow.png"
             alt="Dropdown Arrow"
             className="dropdown-arrow-icon"
-            onClick={toggleDropdown}
           />
           {isDropdownOpen && (
             <div className="dropdown-menu">
-              <button onClick={handleLogout} className="logout-button">
+              <button onClick={logout} className="logout-button">
                 Logout
               </button>
             </div>
