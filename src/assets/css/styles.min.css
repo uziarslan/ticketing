@@ -299,6 +299,20 @@ button {
     background-color: #ffc107;
 }
 
+.buttonWrapper .modalButton.opened {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    display: block;
+    margin-left: 10px;
+    background-color: #4CAF50;
+    ;
+}
+
 .buttonWrapper .modalButton.closed {
     padding: 10px 20px;
     color: white;
@@ -390,6 +404,13 @@ input[type="time"] {
     margin-top: 20px;
 }
 
+select {
+    height: 56px;
+    width: 180px;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+}
+
 .quantity-selector {
     width: 150px;
     height: 40px;
@@ -406,11 +427,19 @@ input[type="time"] {
     height: 100vh;
     background-color: #ffffff;
     align-items: center;
-    padding-top: 20px;
 }
 
-.sidebar-links-container {
-    margin-top: 30%;
+.imageAndTextHolder {
+    padding: 0px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.dashboardLogo {
+    width: 100%;
+    height: auto;
 }
 
 .sidebar-links {
@@ -434,6 +463,10 @@ input[type="time"] {
     padding: 15px;
     transition: background-color 0.3s, border 0.3s;
     border-radius: 10px;
+}
+
+.keyText {
+    text-transform: capitalize;
 }
 
 .sidebar-item img {
@@ -607,6 +640,15 @@ input[type="time"] {
     font-weight: 500;
     margin-right: 20px;
 
+}
+
+.portalTitle {
+    color: #000;
+    font-size: 19px;
+    font-family: Poppins;
+    font-weight: 500;
+    margin-right: 20px;
+    text-align: center;
 }
 
 .top-banner-left h2 {

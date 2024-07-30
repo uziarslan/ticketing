@@ -33,10 +33,20 @@ const Solved = () => {
     setIsModalOpen(true);
   };
 
-  const keysToSkip = [
-    "Please indicate your name (or the requester’s name, if different than your name).",
-    "requestType",
-  ];
+  const handleChangeStatus = async (ticketId, status) => {
+    try {
+      const response = await axiosInstanceAdmin.post(`/change/${ticketId}`, {
+        status,
+      });
+      if (response.status === 200) {
+        closeModal();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const keysToSkip = ["requesterName", "requestType"];
 
   if (isLoading) {
     return <Loader />;
@@ -55,6 +65,7 @@ const Solved = () => {
               <th>Ticket Description</th>
               <th>Creation Date</th>
               <th>Raised By</th>
+              <th>Assigned To</th>
               <th>Closing Date</th>
               <th>Status</th>
             </tr>
@@ -62,21 +73,14 @@ const Solved = () => {
           <tbody>
             {tickets.map((ticket, index) => (
               <tr key={index}>
-                <td>{ticket._id.slice(-5)}</td>
-                <td>{ticket.content.requestType}</td>
+                <td>{ticket._id}</td>
+                <td>{ticket.content.requestType || ticket.content.subject}</td>
                 <td>
-                  <button onClick={() => handleModalClick(ticket.content)}>
-                    Show
-                  </button>
+                  <button onClick={() => handleModalClick(ticket)}>Show</button>
                 </td>
                 <td>{ticket.startDate.split("T")[0]}</td>
-                <td>
-                  {
-                    ticket.content[
-                      "Please indicate your name (or the requester’s name, if different than your name)."
-                    ]
-                  }
-                </td>
+                <td>{ticket.content.requesterName}</td>
+                <td>{ticket.assignedTo}</td>
                 <td>{ticket.closeDate.split("T")[0]}</td>
                 <td className={`status ${ticket.status}`}>
                   {ticket.status.toUpperCase()}
@@ -92,17 +96,45 @@ const Solved = () => {
             <span className="close" onClick={closeModal}>
               &times;
             </span>
-            <h2>{modalContent.requestType}</h2>
+            <h2>{modalContent.content.requestType}</h2>
             <ul>
-              {Object.entries(modalContent)
+              {Object.entries(modalContent.content)
                 .filter(([key]) => !keysToSkip.includes(key))
-                .map(([key, value], index) => (
-                  <li key={index}>
-                    <strong>{key} </strong>{" "}
-                    {value !== true ? value.toString() : ""}
-                  </li>
-                ))}
+                .map(
+                  ([key, value], index) =>
+                    value !== "" && (
+                      <li key={index}>
+                        <strong>{key} </strong>
+                        <br />
+                        {value !== true ? value.toString() : ""}
+                      </li>
+                    )
+                )}
             </ul>
+            <div className="buttonWrapper">
+              <button
+                onClick={() =>
+                  handleChangeStatus(
+                    modalContent._id,
+                    modalContent.status === "processing"
+                      ? "closed"
+                      : "processing"
+                  )
+                }
+                className={`modalButton ${
+                  modalContent.status === "processing" ? "closed" : "process"
+                }`}
+              >
+                {console.log(modalContent.status)}
+                Close Ticket
+              </button>
+              <button
+                onClick={() => handleChangeStatus(modalContent._id, "opened")}
+                className="modalButton opened"
+              >
+                Open Ticket
+              </button>
+            </div>
           </div>
         </div>
       )}

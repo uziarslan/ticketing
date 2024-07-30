@@ -8,13 +8,21 @@ import { AuthContext } from "../Context/AuthContext";
 
 const AdminPortal = () => {
   const [content, setContent] = useState("request");
-  const { admin } = useContext(AuthContext);
+  const { admin, logout } = useContext(AuthContext);
 
   return (
     <div className="homepage">
-      <Sidebar setContent={setContent} selectedTab={content} />
+      <Sidebar
+        title="Admin Portal"
+        setContent={setContent}
+        selectedTab={content}
+      />
       <div className="main-content">
-        <TopBanner title="Admin Portal" user={admin} />
+        <TopBanner
+          title="Wasserman Staff Tech Support & Event Setup"
+          user={admin}
+          logout={logout}
+        />
         <div className="content">
           {content === "request" && <Ticket />}
           {content === "history" && <Solved user="user" />}

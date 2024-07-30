@@ -1,17 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import logo from "../assets/images/logo.jpg";
 import "../assets/css/styles.min.css";
 
 const Sidebar = ({ setContent, title }) => {
   const [activeTab, setActiveTab] = useState("request");
-
-  useEffect(() => {
-    // Set the active tab based on the title
-    if (title === "Admin Portal") {
-      setActiveTab("history");
-    } else {
-      setActiveTab("request");
-    }
-  }, [title]);
 
   const handleTabClick = (tab) => {
     setContent(tab);
@@ -21,9 +13,15 @@ const Sidebar = ({ setContent, title }) => {
   return (
     <div className="sidebar">
       <div className="sidebar-links-container">
+        <div className="imageAndTextHolder">
+          <img className="dashboardLogo" src={logo} alt="Logo" />
+          <h1 className="portalTitle">{title}</h1>
+        </div>
         <div className="sidebar-links">
           <div
-            className={`sidebar-link ${activeTab === "request" ? "active" : ""}`}
+            className={`sidebar-link ${
+              activeTab === "request" ? "active" : ""
+            }`}
             onClick={() => handleTabClick("request")}
           >
             <div className="sidebar-item">
@@ -36,7 +34,9 @@ const Sidebar = ({ setContent, title }) => {
             </div>
           </div>
           <div
-            className={`sidebar-link ${activeTab === "history" ? "active" : ""}`}
+            className={`sidebar-link ${
+              activeTab === "history" ? "active" : ""
+            }`}
             onClick={() => handleTabClick("history")}
           >
             <div className="sidebar-item">

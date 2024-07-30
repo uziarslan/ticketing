@@ -24,7 +24,6 @@ const History = ({ user }) => {
         // setIsLoading(false);
       }
     };
-
     fetchTicket();
   }, [tickets]);
 
@@ -34,10 +33,7 @@ const History = ({ user }) => {
     }
   }, [isViewComment]);
 
-  const keysToSkip = [
-    "Please indicate your name (or the requester’s name, if different than your name).",
-    "requestType",
-  ];
+  const keysToSkip = ["requesterName", "requestType"];
 
   const handleAddComment = async (id) => {
     setComment("");
@@ -47,7 +43,7 @@ const History = ({ user }) => {
     try {
       const response = await axiosInstance.post(`/add-comment/${id}`, {
         comment,
-        sender: user._id,
+        senderId: user._id,
       });
       if (response.status === 200) {
         setTickets((prevTickets) =>
@@ -75,7 +71,7 @@ const History = ({ user }) => {
             <div className="ticket-header">
               <div className="ticket-header-left">
                 <div className="bullet ticket"></div>
-                <h2>Ticket #{ticket._id.slice(-5)}</h2>
+                <h2>Ticket #{ticket._id}</h2>
               </div>
               <div className="ticket-header-right">
                 <div className={`bullet ${ticket.status}`}></div>
@@ -89,12 +85,16 @@ const History = ({ user }) => {
               <ul>
                 {Object.entries(ticket.content)
                   .filter(([key]) => !keysToSkip.includes(key))
-                  .map(([key, value], index) => (
-                    <li key={index}>
-                      <strong>{key} </strong>{" "}
-                      {value !== true ? value.toString() : ""}
-                    </li>
-                  ))}
+                  .map(
+                    ([key, value], index) =>
+                      value !== "" && (
+                        <li key={index}>
+                          <strong className="keyText">{key} </strong>
+                          <br />
+                          {value !== true ? value.toString() : ""}
+                        </li>
+                      )
+                  )}
               </ul>
               <p>
                 <Link onClick={() => setIsViewComment(index)}>

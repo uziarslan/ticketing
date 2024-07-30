@@ -35,9 +35,13 @@ const EmployeePortal = () => {
 
   return (
     <div className="homepage">
-      <Sidebar setContent={setContent} />
+      <Sidebar title="Employee Portal" setContent={setContent} />
       <div className="main-content">
-        <TopBanner title="Employee Portal" user={user} />
+        <TopBanner
+          title="Wasserman Staff Tech Support & Event Setup"
+          user={user}
+          logout={logout}
+        />
         <div className="content">
           {content === "request" && (
             <Request mainPage={mainPage} subPages={subPages} />

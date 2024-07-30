@@ -8,6 +8,7 @@ const Ticket = () => {
   const [tickets, setTickets] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({});
+  const [assignedTo, setAssignedTo] = useState("");
   const [comment, setComment] = useState("");
   const commentsEndRef = useRef(null);
   const { isLoading } = useContext(AuthContext);
@@ -26,7 +27,7 @@ const Ticket = () => {
     };
 
     fetchTicket();
-  }, []);
+  }, [tickets]);
 
   useEffect(() => {
     if (commentsEndRef.current) {
@@ -47,6 +48,7 @@ const Ticket = () => {
     try {
       const response = await axiosInstanceAdmin.post(`/change/${ticketId}`, {
         status,
+        assignedTo,
       });
       if (response.status === 200) {
         closeModal();
@@ -64,7 +66,7 @@ const Ticket = () => {
     try {
       const response = await axiosInstanceAdmin.post(
         `/add-comment/${modalContent._id}`,
-        { comment, sender: null }
+        { comment, senderId: null }
       );
       if (response.status === 200) {
         setModalContent(response.data);
@@ -74,10 +76,7 @@ const Ticket = () => {
     }
   };
 
-  const keysToSkip = [
-    "Please indicate your name (or the requester’s name, if different than your name).",
-    "requestType",
-  ];
+  const keysToSkip = ["requesterName", "requestType"];
 
   if (isLoading) {
     return <Loader />;
@@ -102,19 +101,13 @@ const Ticket = () => {
           <tbody>
             {tickets.map((ticket, index) => (
               <tr key={index}>
-                <td>{ticket._id.slice(-5)}</td>
-                <td>{ticket.content.requestType}</td>
+                <td>{ticket._id}</td>
+                <td>{ticket.content.requestType || ticket.content.subject}</td>
                 <td>
                   <button onClick={() => handleModalClick(ticket)}>Show</button>
                 </td>
                 <td>{ticket.startDate.split("T")[0]}</td>
-                <td>
-                  {
-                    ticket.content[
-                      "Please indicate your name (or the requester’s name, if different than your name)."
-                    ]
-                  }
-                </td>
+                <td>{ticket.content.requesterName}</td>
                 <td className={`status ${ticket.status}`}>
                   {ticket.status.toUpperCase()}
                 </td>
@@ -134,13 +127,32 @@ const Ticket = () => {
             <ul>
               {Object.entries(modalContent.content)
                 .filter(([key]) => !keysToSkip.includes(key))
-                .map(([key, value], index) => (
-                  <li key={index}>
-                    <strong>{key} </strong>{" "}
-                    {value !== true ? value.toString() : ""}
-                  </li>
-                ))}
+                .map(
+                  ([key, value], index) =>
+                    value !== "" && (
+                      <li key={index}>
+                        <strong className="keyText">{key} </strong>
+                        <br />
+                        {value !== true ? value.toString() : ""}
+                      </li>
+                    )
+                )}
             </ul>
+            <hr />
+            <h3 className="assignedTo">Assigned to</h3>
+            <select
+              value={assignedTo}
+              onChange={(e) => setAssignedTo(e.target.value)}
+            >
+              <option value="Dexter Hazelton">Dexter Hazelton</option>
+              <option value="Kushal Kothari">Kushal Kothari</option>
+              <option value="Nikhil Pujari">Nikhil Pujari</option>
+              <option value="Kiran Raj">Kiran Raj</option>
+              <option value="Vishnu Vardhan Naidu Yasarapu">
+                Vishnu Vardhan Naidu Yasarapu
+              </option>
+              <option value="Bhanu Thipparthi">Bhanu Thipparthi</option>
+            </select>
             <hr />
             <div className="comment-section">
               <h3>Comments</h3>
