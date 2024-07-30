@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import TopBanner from "./TopBanner";
 import Request from "./Request";
@@ -13,7 +12,6 @@ const EmployeePortal = () => {
   const [mainPage, setMainPage] = useState(null);
   const [subPages, setSubPages] = useState(null);
   const [content, setContent] = useState("request");
-  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
