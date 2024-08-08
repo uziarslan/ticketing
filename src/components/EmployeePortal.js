@@ -26,7 +26,7 @@ const EmployeePortal = () => {
     };
 
     seedData();
-  }, [mainPage, subPages]);
+  }, []);
 
   if (!user) return null;
 

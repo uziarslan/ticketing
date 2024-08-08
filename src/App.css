@@ -5,7 +5,7 @@ button {
   cursor: pointer;
 }
 
-.modal {
+.modal2 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@ button {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
+.modal-content2 {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -44,8 +44,19 @@ button {
   cursor: pointer;
 }
 
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modalHeader h2 {
+  font-size: 25px;
+}
+
 .assignedTo {
-  margin-bottom: 0;
+  margin-bottom: 10px;
+  font-size: 25px;
 }
 
 
@@ -72,6 +83,10 @@ button {
   position: absolute;
   top: 0;
   right: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
 }
 
 .commentInput {

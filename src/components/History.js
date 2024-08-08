@@ -76,7 +76,7 @@ const History = ({ user }) => {
               <div className="ticket-header-right">
                 <div className={`bullet ${ticket.status}`}></div>
                 <span className={`status ${ticket.status}`}>
-                  {ticket.status}
+                  {ticket.status === "opened" ? "Open" : ticket.status === "processing" ? "In Progress" : ticket.status === "closed" ? "closed" : ""}
                 </span>
               </div>
             </div>

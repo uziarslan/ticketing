@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/images/logo.jpg";
+import logo from "../assets/images/logo.png";
 import "../assets/css/styles.min.css";
 
 const Sidebar = ({ setContent, title }) => {
@@ -19,9 +19,8 @@ const Sidebar = ({ setContent, title }) => {
         </div>
         <div className="sidebar-links">
           <div
-            className={`sidebar-link ${
-              activeTab === "request" ? "active" : ""
-            }`}
+            className={`sidebar-link ${activeTab === "request" ? "active" : ""
+              }`}
             onClick={() => handleTabClick("request")}
           >
             <div className="sidebar-item">
@@ -34,9 +33,8 @@ const Sidebar = ({ setContent, title }) => {
             </div>
           </div>
           <div
-            className={`sidebar-link ${
-              activeTab === "history" ? "active" : ""
-            }`}
+            className={`sidebar-link ${activeTab === "history" ? "active" : ""
+              }`}
             onClick={() => handleTabClick("history")}
           >
             <div className="sidebar-item">

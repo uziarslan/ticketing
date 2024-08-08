@@ -143,7 +143,7 @@ const Request = ({ mainPage, subPages }) => {
               </div>
             </>
           )}
-          <button type="button" onClick={toggleAdditionalOptions}>
+          <button className="exploreMoreBtn" type="button" onClick={toggleAdditionalOptions}>
             {showAdditionalOptions
               ? "Add Subject or Description"
               : "Explore more"}

@@ -75,7 +75,7 @@ const Login = () => {
           <form onSubmit={handleOtp}>
             <div className="input-container">
               <div className="input-group">
-                <label htmlFor="email">2FA</label>
+                <label htmlFor="email">OTP sent to your email</label>
                 <input
                   type="text"
                   placeholder="0000"

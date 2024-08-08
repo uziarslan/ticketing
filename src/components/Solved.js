@@ -65,7 +65,6 @@ const Solved = () => {
               <th>Ticket Description</th>
               <th>Creation Date</th>
               <th>Raised By</th>
-              <th>Assigned To</th>
               <th>Closing Date</th>
               <th>Status</th>
             </tr>
@@ -80,7 +79,6 @@ const Solved = () => {
                 </td>
                 <td>{ticket.startDate.split("T")[0]}</td>
                 <td>{ticket.content.requesterName}</td>
-                <td>{ticket.assignedTo}</td>
                 <td>{ticket.closeDate.split("T")[0]}</td>
                 <td className={`status ${ticket.status}`}>
                   {ticket.status.toUpperCase()}
@@ -91,8 +89,8 @@ const Solved = () => {
         </table>
       </div>
       {isModalOpen && (
-        <div className="modal" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal2" onClick={closeModal}>
+          <div className="modal-content2" onClick={(e) => e.stopPropagation()}>
             <span className="close" onClick={closeModal}>
               &times;
             </span>
@@ -121,12 +119,9 @@ const Solved = () => {
                       : "processing"
                   )
                 }
-                className={`modalButton ${
-                  modalContent.status === "processing" ? "closed" : "process"
-                }`}
+                className="modalButton process"
               >
-                {console.log(modalContent.status)}
-                Close Ticket
+                Process Ticket
               </button>
               <button
                 onClick={() => handleChangeStatus(modalContent._id, "opened")}

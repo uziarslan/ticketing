@@ -95,6 +95,7 @@ const Ticket = () => {
               <th>Ticket Description</th>
               <th>Creation Date</th>
               <th>Raised By</th>
+              <th>Assigned To</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -108,8 +109,9 @@ const Ticket = () => {
                 </td>
                 <td>{ticket.startDate.split("T")[0]}</td>
                 <td>{ticket.content.requesterName}</td>
+                <td>{ticket.assignedTo}</td>
                 <td className={`status ${ticket.status}`}>
-                  {ticket.status.toUpperCase()}
+                  {ticket.status === "opened" ? "Open" : ticket.status === "processing" ? "In Processing" : ""}
                 </td>
               </tr>
             ))}
@@ -118,11 +120,14 @@ const Ticket = () => {
       </div>
 
       {isModalOpen && (
-        <div className="modal" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
+        <div className="modal2" onClick={closeModal}>
+          <div className="modal-content2" onClick={(e) => e.stopPropagation()}>
+            <div className="modalHeader">
+              <h2 className="modalHeaderText">Ticket Details</h2>
+              <span className="close" onClick={closeModal}>
+                &times;
+              </span>
+            </div>
             <h2>{modalContent.content.requestType}</h2>
             <ul>
               {Object.entries(modalContent.content)
