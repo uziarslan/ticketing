@@ -7,11 +7,13 @@ import "../assets/css/styles.min.css";
 import axiosInstance from "../services/axiosInstance";
 import { AuthContext } from "../Context/AuthContext";
 import authService from "../services/authService";
+import Flash from "./Flash"
 
 const EmployeePortal = () => {
   const [mainPage, setMainPage] = useState(null);
   const [subPages, setSubPages] = useState(null);
   const [content, setContent] = useState("request");
+  const [message, setMessage] = useState("")
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -32,6 +34,7 @@ const EmployeePortal = () => {
 
   return (
     <div className="homepage">
+      <Flash message={message} />
       <Sidebar title="Employee Portal" setContent={setContent} />
       <div className="main-content">
         <TopBanner
@@ -41,7 +44,7 @@ const EmployeePortal = () => {
         />
         <div className="content">
           {content === "request" && (
-            <Request mainPage={mainPage} subPages={subPages} />
+            <Request setMessage={setMessage} mainPage={mainPage} subPages={subPages} />
           )}
           {content === "history" && <History user={user} />}
         </div>

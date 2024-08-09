@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../assets/css/styles.min.css";
 import axiosInstance from "../services/axiosInstance";
 
-const Request = ({ mainPage, subPages }) => {
+const Request = ({ mainPage, subPages, setMessage }) => {
   const [step, setStep] = useState(1);
   const [selectedRequestType, setSelectedRequestType] = useState(false);
   const [formData, setFormData] = useState({
@@ -60,13 +60,15 @@ const Request = ({ mainPage, subPages }) => {
 
   // Handle form submission
   const handleSubmit = async () => {
-    if (!formData.requesterName) {
+    setMessage("")
+    if (!formData.requesterName || !formData.telephone) {
+      setMessage({ error: "'Name' and 'Telephone' field is required" })
       return;
     }
     try {
       const response = await axiosInstance.post("/create-ticket", formData);
       if (response.status === 200) {
-        console.log(formData);
+        setMessage({ success: "Ticket raised successfully" })
         setStep(1);
         resetmainPage();
         setSelectedRequestType(false);
