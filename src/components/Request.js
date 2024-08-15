@@ -17,7 +17,12 @@ const Request = ({ mainPage, subPages, setMessage }) => {
 
   const handleNextClick = () => {
     setMessage("")
-    if (!formData.requesterName || !formData.telephone || !formData.requestType) {
+    if (!formData.requesterName || !formData.telephone) {
+      setMessage({ error: "'Name' and 'Telephone' field is required" });
+      return;
+    }
+
+    if (!formData.requestType) {
       setMessage({ error: "Please select any option" })
       return;
     }
@@ -74,7 +79,8 @@ const Request = ({ mainPage, subPages, setMessage }) => {
   };
 
   // Handle form submission
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setMessage("")
     if (!formData.requesterName || !formData.telephone) {
       setMessage({ error: "'Name' and 'Telephone' field is required" })
@@ -116,7 +122,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
   if (!mainPage || !subPages) return null;
 
   return (
-    <div className="request">
+    <form onSubmit={handleSubmit} className="request">
       <h2>Create your ticket</h2>
       {step === 1 && (
         <>
@@ -160,7 +166,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
             <button onClick={toggleSummary} className="exploreMoreBtn">Summarize your issue</button>
             <p style={{ margin: 0 }}>OR</p>
             <button className="exploreMoreBtn" type="button" onClick={toggleAdditionalOptions}>
-              Describe your issue
+              Fill a form
             </button>
           </div>
 
@@ -173,6 +179,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
 
@@ -183,6 +190,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                   value={formData.description}
                   onChange={handleInputChange}
                   className="auto-resize-textarea font-family"
+                  required
                 />
               </div>
             </>
@@ -204,6 +212,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                     name="requestType"
                     value={option}
                     onChange={handleRadioChange}
+                    required
                   />
                   <label htmlFor={option}>{option}</label>
                 </div>
@@ -213,7 +222,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
 
           <div className="button-group">
             {!showAdditionalOptions ? (
-              <button type="button" onClick={handleSubmit}>
+              <button type="submit">
                 Submit
               </button>
             ) : (
@@ -241,6 +250,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                     type="text"
                     name={content.heading}
                     onChange={(e) => handleInputChange(e, content)}
+                    required
                   />
                 )}
                 {content.type === "date" && (
@@ -248,6 +258,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                     type="date"
                     name={content.heading}
                     onChange={(e) => handleInputChange(e, content)}
+                    required
                   />
                 )}
                 {content.type === "time" && (
@@ -255,6 +266,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                     type="time"
                     name={content.heading}
                     onChange={(e) => handleInputChange(e, content)}
+                    required
                   />
                 )}
                 {content.type === "radio" && (
@@ -266,6 +278,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                           id={option}
                           name={content.heading}
                           value={option}
+                          required
                           onChange={(e) => handleInputChange(e, content)}
                         />
                         <label htmlFor={option}>{option}</label>
@@ -294,6 +307,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                           id={option}
                           name={option}
                           onChange={(e) => handleInputChange(e, content)}
+                          required
                         />
                         <label style={{ margin: "0px", marginLeft: "10px" }} htmlFor={option}>{option}</label>
                       </div>
@@ -306,13 +320,13 @@ const Request = ({ mainPage, subPages, setMessage }) => {
             <button type="button" onClick={handleBackClick}>
               Back
             </button>
-            <button type="button" onClick={handleSubmit}>
+            <button type="submit">
               Submit
             </button>
           </div>
         </>
       )}
-    </div>
+    </form>
   );
 };
 
