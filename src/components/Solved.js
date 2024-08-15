@@ -91,9 +91,12 @@ const Solved = () => {
       {isModalOpen && (
         <div className="modal2" onClick={closeModal}>
           <div className="modal-content2" onClick={(e) => e.stopPropagation()}>
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
+            <div className="modalHeader">
+              <h2 className="modalHeaderText">Ticket Details</h2>
+              <span className="close" onClick={closeModal}>
+                &times;
+              </span>
+            </div>
             <h2>{modalContent.content.requestType}</h2>
             <ul>
               {Object.entries(modalContent.content)

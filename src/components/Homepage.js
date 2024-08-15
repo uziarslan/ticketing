@@ -12,6 +12,9 @@ import aboutImage from "../assets/images/about-img1.jpg"
 import Navbar from './Navbar';
 import Banner from './Banner';
 import Footer from './Footer';
+import "../assets/css/bootstrap.css"
+import "../assets/css/style.css"
+import "../assets/css/responsive.css"
 
 const HomePage = () => {
     const [name, setName] = useState("");
@@ -38,61 +41,56 @@ const HomePage = () => {
     }
 
     return (
-        <div className="hero_area">
-            <Navbar />
-            <section className="slider_section">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="detail_box">
-                                <h1>
-                                    NYU <br />
-                                    Wasserman Center <br />
-                                    For Career Development
-                                </h1>
-                                <p>
-                                    Wasserman meets any individual exactly where they are in their career journey, helps them examine and internalize the things that matter to them most, and provides them with the guidance, exposure, and support to take action and pursue meaningful careers with confidence.
-                                </p>
-                                <Link to="/contact" className="">
-                                    Contact Us
-                                </Link>
+        <>
+            <div className="hero_area">
+                <Navbar />
+                <section className="slider_section">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="detail_box">
+                                    <h1>
+                                        NYU <br />
+                                        Wasserman Center <br />
+                                        For Career Development
+                                    </h1>
+                                    <p>
+                                        Wasserman meets any individual exactly where they are in their career journey, helps them examine and internalize the things that matter to them most, and provides them with the guidance, exposure, and support to take action and pursue meaningful careers with confidence.
+                                    </p>
+                                    <Link to="/contact" className="">
+                                        Contact Us
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-lg-5 col-md-6 offset-lg-1">
-                            <div className="img_content">
-                                <div className="img_container">
-                                    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-                                        <div className="carousel-inner">
-                                            <div className="carousel-item active">
-                                                <div className="img-box">
-                                                    <img src={logo2} alt="Carousel" />
+                            <div className="col-lg-5 col-md-6 offset-lg-1">
+                                <div className="img_content">
+                                    <div className="img_container">
+                                        <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+                                            <div className="carousel-inner">
+                                                <div className="carousel-item active">
+                                                    <div className="img-box">
+                                                        <img src={logo2} alt="Carousel" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="carousel-item">
-                                                <div className="img-box">
-                                                    <img src={nyuImage} alt="Carousel" />
+                                                <div className="carousel-item">
+                                                    <div className="img-box">
+                                                        <img src={nyuImage} alt="Carousel" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="carousel-item">
-                                                <div className="img-box">
-                                                    <img src={logo2} alt="Carousel" />
+                                                <div className="carousel-item">
+                                                    <div className="img-box">
+                                                        <img src={logo2} alt="Carousel" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                    <span className="sr-only">Previous</span>
-                                </a>
-                                <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                    <span className="sr-only">Next</span>
-                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
+                </section>
+            </div>
             <section className="service_section layout_padding" id="service">
                 <div className="container">
                     <div className="heading_container">
@@ -238,7 +236,7 @@ const HomePage = () => {
             </section>
             <Banner />
             <Footer />
-        </div>
+        </>
     );
 };
 

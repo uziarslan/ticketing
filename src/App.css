@@ -144,7 +144,10 @@ button {
   display: flex;
   flex-direction: row;
   width: 100%;
-  place-content: space-evenly;
+  place-content: space-between;
+  max-width: 94%;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .auto-resize-textarea {

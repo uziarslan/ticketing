@@ -4,6 +4,7 @@ import axiosInstance from "../services/axiosInstance";
 
 const Request = ({ mainPage, subPages, setMessage }) => {
   const [step, setStep] = useState(1);
+  const [shortForm, setShortForm] = useState(false);
   const [selectedRequestType, setSelectedRequestType] = useState(false);
   const [formData, setFormData] = useState({
     requesterName: "",
@@ -20,6 +21,11 @@ const Request = ({ mainPage, subPages, setMessage }) => {
     }
     setStep(2);
   };
+
+  const toggleSummary = () => {
+    setShowAdditionalOptions(false);
+    setShortForm(!shortForm)
+  }
 
   const handleBackClick = () => {
     setSelectedRequestType(null);
@@ -44,6 +50,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
   };
 
   const toggleAdditionalOptions = () => {
+    setShortForm(false)
     setShowAdditionalOptions((prevState) => !prevState);
   };
 
@@ -89,7 +96,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
           <div className="form-group">
             <label>
               Please indicate your name (or the requester’s name, if different
-              than your name).
+              than your name)<span className="mandatory">*</span>
             </label>
             <input
               type="text"
@@ -101,7 +108,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
 
           <div className="first_row">
             <div className="form-group">
-              <label>Telephone</label>
+              <label>Telephone<span className="mandatory">*</span></label>
               <input
                 type="text"
                 name="telephone"
@@ -110,7 +117,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
               />
             </div>
             <div className="form-group">
-              <label>Location</label>
+              <label>Location<span className="mandatory">*</span></label>
               <select
                 name="location"
                 value={formData.location}
@@ -122,7 +129,15 @@ const Request = ({ mainPage, subPages, setMessage }) => {
             </div>
           </div>
 
-          {!showAdditionalOptions && (
+          <div className="first_row">
+            <button onClick={toggleSummary} className="exploreMoreBtn">Summarize your issue</button>
+            <p style={{ margin: 0 }}>OR</p>
+            <button className="exploreMoreBtn" type="button" onClick={toggleAdditionalOptions}>
+              Describe your issue
+            </button>
+          </div>
+
+          {shortForm && (
             <>
               <div className="form-group">
                 <label>Subject</label>
@@ -145,11 +160,6 @@ const Request = ({ mainPage, subPages, setMessage }) => {
               </div>
             </>
           )}
-          <button className="exploreMoreBtn" type="button" onClick={toggleAdditionalOptions}>
-            {showAdditionalOptions
-              ? "Add Subject or Description"
-              : "Explore more"}
-          </button>
 
           {showAdditionalOptions && (
             <div className="form-group">
