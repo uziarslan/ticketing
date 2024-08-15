@@ -105,13 +105,13 @@ const Ticket = () => {
                 <td>{ticket._id}</td>
                 <td>{ticket.content.requestType || ticket.content.subject}</td>
                 <td>
-                  <button onClick={() => handleModalClick(ticket)}>Show</button>
+                  <button className="showButton" onClick={() => handleModalClick(ticket)}>Show</button>
                 </td>
                 <td>{ticket.startDate.split("T")[0]}</td>
                 <td>{ticket.content.requesterName}</td>
                 <td>{ticket.assignedTo}</td>
                 <td className={`status ${ticket.status}`}>
-                  {ticket.status === "opened" ? "Open" : ticket.status === "processing" ? "In Processing" : ""}
+                  {ticket.status === "opened" ? "Open" : ticket.status === "processing" ? "In Progress" : ""}
                 </td>
               </tr>
             ))}
@@ -144,20 +144,22 @@ const Ticket = () => {
                 )}
             </ul>
             <hr />
-            <h3 className="assignedTo">Assigned to</h3>
-            <select
-              value={assignedTo}
-              onChange={(e) => setAssignedTo(e.target.value)}
-            >
-              <option value="Dexter Hazelton">Dexter Hazelton</option>
-              <option value="Kushal Kothari">Kushal Kothari</option>
-              <option value="Nikhil Pujari">Nikhil Pujari</option>
-              <option value="Kiran Raj">Kiran Raj</option>
-              <option value="Vishnu Vardhan Naidu Yasarapu">
-                Vishnu Vardhan Naidu Yasarapu
-              </option>
-              <option value="Bhanu Thipparthi">Bhanu Thipparthi</option>
-            </select>
+            <div className="form-group">
+              <h3 className="assignedTo">Assigned to</h3>
+              <select
+                value={assignedTo}
+                onChange={(e) => setAssignedTo(e.target.value)}
+              >
+                <option value="Dexter Hazelton">Dexter Hazelton</option>
+                <option value="Kushal Kothari">Kushal Kothari</option>
+                <option value="Nikhil Pujari">Nikhil Pujari</option>
+                <option value="Kiran Raj">Kiran Raj</option>
+                <option value="Vishnu Vardhan Naidu Yasarapu">
+                  Vishnu Vardhan Naidu Yasarapu
+                </option>
+                <option value="Bhanu Thipparthi">Bhanu Thipparthi</option>
+              </select>
+            </div>
             <hr />
             <div className="comment-section">
               <h3>Comments</h3>

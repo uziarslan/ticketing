@@ -9,14 +9,22 @@ const Request = ({ mainPage, subPages, setMessage }) => {
   const [formData, setFormData] = useState({
     requesterName: "",
     telephone: "",
-    location: "Brooklyn", // default value
+    location: "Union Square", // default value
     subject: "",
     description: "",
   });
   const [showAdditionalOptions, setShowAdditionalOptions] = useState(false);
 
   const handleNextClick = () => {
-    if (!formData.requesterName) {
+    setMessage("")
+    if (!formData.requesterName || !formData.telephone || !formData.requestType) {
+      setMessage({ error: "Please select any option" })
+      return;
+    }
+
+    const phoneRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    if (!phoneRegex.test(formData.telephone)) {
+      setMessage({ error: "Invalid phone number format" });
       return;
     }
     setStep(2);
@@ -59,7 +67,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
     setFormData({
       requesterName: "",
       telephone: "",
-      location: "Brooklyn", // reset to default value
+      location: "Union Square", // reset to default value
       subject: "",
       description: "",
     });
@@ -72,17 +80,36 @@ const Request = ({ mainPage, subPages, setMessage }) => {
       setMessage({ error: "'Name' and 'Telephone' field is required" })
       return;
     }
-    try {
-      const response = await axiosInstance.post("/create-ticket", formData);
-      if (response.status === 200) {
-        setMessage({ success: "Ticket raised successfully" })
-        setStep(1);
-        resetmainPage();
-        setSelectedRequestType(false);
-        setShowAdditionalOptions(false);
+
+    const phoneRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    if (!phoneRegex.test(formData.telephone)) {
+      setMessage({ error: "Invalid phone number format" });
+      return;
+    }
+
+    if (shortForm) {
+      if (!formData.subject || !formData.description) {
+        setMessage({ error: "Please enter 'Subject' and 'Description'" });
+        return;
       }
-    } catch (error) {
-      console.error(error);
+    }
+
+    if (shortForm || showAdditionalOptions) {
+      try {
+        const response = await axiosInstance.post("/create-ticket", formData);
+        if (response.status === 200) {
+          setMessage({ success: "Ticket raised successfully" })
+          setStep(1);
+          resetmainPage();
+          setSelectedRequestType(false);
+          setShowAdditionalOptions(false);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setMessage({ error: "Please describe your issue." });
+      return;
     }
   };
 
@@ -123,8 +150,8 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                 value={formData.location}
                 onChange={(e) => handleInputChange(e)}
               >
-                <option value="Brooklyn">Brooklyn</option>
                 <option value="Union Square">Union Square</option>
+                <option value="Brooklyn">Brooklyn</option>
               </select>
             </div>
           </div>
@@ -268,7 +295,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
                           name={option}
                           onChange={(e) => handleInputChange(e, content)}
                         />
-                        <label htmlFor={option}>{option}</label>
+                        <label style={{ margin: "0px", marginLeft: "10px" }} htmlFor={option}>{option}</label>
                       </div>
                     ))}
                   </div>

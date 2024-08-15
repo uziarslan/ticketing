@@ -80,6 +80,14 @@ button {
 }
 
 .inputAndButtonWrapper button {
+  border-radius: 5px;
+}
+
+.showButton {
+  border-radius: 5px;
+}
+
+.inputAndButtonWrapper button {
   position: absolute;
   top: 0;
   right: -6px;
@@ -93,6 +101,7 @@ button {
   width: 100%;
   height: 33px;
   margin-bottom: 15px;
+  border-radius: 5px;
 }
 
 .commentInput::placeholder {

@@ -116,7 +116,7 @@ const HomePage = () => {
                             <div className="detail-box">
                                 <h5>Photobooth for Professional Headshot</h5>
                                 <div className="btn-box">
-                                    <Link to="/service">Staff Login</Link>
+                                    <Link to="/service">Rent a Coat</Link>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@ const HomePage = () => {
                                 <img src={s3} className="img1" alt="Service 3" />
                             </div>
                             <div className="detail-box">
-                                <h5>Resume Guide</h5>
+                                <h5>IT Ticket System</h5>
                                 <div className="btn-box">
                                     <Link to="/login">Raise Ticket</Link>
                                 </div>

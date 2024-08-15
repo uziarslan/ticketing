@@ -75,7 +75,7 @@ const Solved = () => {
                 <td>{ticket._id}</td>
                 <td>{ticket.content.requestType || ticket.content.subject}</td>
                 <td>
-                  <button onClick={() => handleModalClick(ticket)}>Show</button>
+                  <button className="showButton" onClick={() => handleModalClick(ticket)}>Show</button>
                 </td>
                 <td>{ticket.startDate.split("T")[0]}</td>
                 <td>{ticket.content.requesterName}</td>

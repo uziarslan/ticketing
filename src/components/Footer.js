@@ -8,8 +8,8 @@ export default function Footer() {
                 <div className="row">
                     <div className="col-lg-7 col-md-9 mx-auto">
                         <p>
-                            &copy; 2019 All Rights Reserved By
-                            <Link to="https://www.wassermancenter.com"> Wasserman NYUs</Link>
+                            &copy; 2024 All Rights Reserved By
+                            <Link to="https://www.wassermancenter.com"> Wasserman NYU</Link>
                         </p>
                     </div>
                 </div>

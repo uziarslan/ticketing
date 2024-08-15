@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../assets/css/styles.min.css";
 
-const TopBanner = ({ title, user, logout }) => {
+const TopBanner = ({ title, user }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   // Function to format the date as "Day, DD Month"
@@ -31,18 +31,6 @@ const TopBanner = ({ title, user, logout }) => {
         <div onClick={toggleDropdown} className="user-info">
           <img src="bellicon.png" alt="Bell Icon" className="bell-icon" />
           <h1>{user.username}</h1>
-          <img
-            src="dropdown_arrow.png"
-            alt="Dropdown Arrow"
-            className="dropdown-arrow-icon"
-          />
-          {isDropdownOpen && (
-            <div className="dropdown-menu">
-              <button onClick={logout} className="logout-button">
-                Logout
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>

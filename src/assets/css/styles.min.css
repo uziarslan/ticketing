@@ -487,9 +487,12 @@ select {
     cursor: pointer;
 }
 
+.redirectButtons {
+    padding: 0px 20px;
+}
+
 .sidebar-item {
-    width: 70%;
-    margin-left: 20px;
+    width: 100%;
     display: flex;
     align-items: center;
     padding: 15px;

@@ -7,7 +7,7 @@ export default function Navbar({ loginPage }) {
 
     // Handle scroll and update active tab
     const handleScroll = () => {
-        const sections = ["home", "about", "service", "events", "contact"];
+        const sections = ["home", "about", "service", "contact"];
         const scrollPosition = window.pageYOffset + 100; // Adjust to trigger activation a bit early
 
         let activeTab = "home"; // Default tab if no other tab is active
@@ -85,11 +85,6 @@ export default function Navbar({ loginPage }) {
                                             <li className={`nav-item ${tabName === "service" ? "active" : ""}`}>
                                                 <button className="nav-link btn-link" onClick={() => scrollToSection("service")}>
                                                     Service
-                                                </button>
-                                            </li>
-                                            <li className={`nav-item ${tabName === "events" ? "active" : ""}`}>
-                                                <button className="nav-link btn-link" onClick={() => scrollToSection("events")}>
-                                                    Events
                                                 </button>
                                             </li>
                                             <li className={`nav-item ${tabName === "contact" ? "active" : ""}`}>
