@@ -24,7 +24,7 @@ const TopBanner = ({ title, user, burgerOpen, setBurgerOpen }) => {
   return (
     <div className="top-banner">
       <div onClick={() => setBurgerOpen(!burgerOpen)} className="burgerMenu">
-        <img src={burgerMenu} />
+        <img alt="Burger menu" src={burgerMenu} />
       </div>
       <div className="top-banner-left">
         <h1>{title}</h1>
