@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import burgerMenu from "../assets/images/burger-menu-svgrepo-com.svg";
 import "../assets/css/styles.min.css";
 
-const TopBanner = ({ title, user }) => {
+const TopBanner = ({ title, user, burgerOpen, setBurgerOpen }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   // Function to format the date as "Day, DD Month"
@@ -22,6 +23,9 @@ const TopBanner = ({ title, user }) => {
 
   return (
     <div className="top-banner">
+      <div onClick={() => setBurgerOpen(!burgerOpen)} className="burgerMenu">
+        <img src={burgerMenu} />
+      </div>
       <div className="top-banner-left">
         <h1>{title}</h1>
         <img src="calendar_icon.png" alt="calendar" />

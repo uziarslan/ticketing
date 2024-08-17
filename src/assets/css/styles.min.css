@@ -215,7 +215,7 @@ h2 {
 .request {
     background-color: #fff;
     padding: 20px;
-    width: 640px;
+    max-width: 640px;
     border-radius: 20px;
     box-sizing: border-box;
 }
@@ -443,7 +443,7 @@ select {
 }
 
 .sidebar {
-    width: 300px;
+    max-width: 300px;
     height: 100vh;
     background-color: #ffffff;
     align-items: center;

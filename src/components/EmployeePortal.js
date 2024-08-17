@@ -7,13 +7,14 @@ import "../assets/css/styles.min.css";
 import axiosInstance from "../services/axiosInstance";
 import { AuthContext } from "../Context/AuthContext";
 import authService from "../services/authService";
-import Flash from "./Flash"
+import Flash from "./Flash";
 
 const EmployeePortal = () => {
   const [mainPage, setMainPage] = useState(null);
   const [subPages, setSubPages] = useState(null);
   const [content, setContent] = useState("request");
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
+  const [burgerOpen, setBurgerOpen] = useState(false);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -35,16 +36,26 @@ const EmployeePortal = () => {
   return (
     <div className="homepage">
       <Flash message={message} />
-      <Sidebar title="Employee Portal" setContent={setContent} />
+      <Sidebar
+        burgerOpen={burgerOpen}
+        title="Employee Portal"
+        setContent={setContent}
+      />
       <div className="main-content">
         <TopBanner
+          burgerOpen={burgerOpen}
+          setBurgerOpen={setBurgerOpen}
           title="Wasserman Staff Tech Support & Event Setup"
           user={user}
           logout={authService.logout}
         />
         <div className="content">
           {content === "request" && (
-            <Request setMessage={setMessage} mainPage={mainPage} subPages={subPages} />
+            <Request
+              setMessage={setMessage}
+              mainPage={mainPage}
+              subPages={subPages}
+            />
           )}
           {content === "history" && <History user={user} />}
         </div>
