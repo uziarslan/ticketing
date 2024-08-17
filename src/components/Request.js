@@ -164,7 +164,7 @@ const Request = ({ mainPage, subPages, setMessage }) => {
 
           <div className="first_row">
             <button onClick={toggleSummary} className="exploreMoreBtn">Summarize your issue</button>
-            <p style={{ margin: 0 }}>OR</p>
+            <p className="or-text">OR</p>
             <button className="exploreMoreBtn" type="button" onClick={toggleAdditionalOptions}>
               Fill a form
             </button>

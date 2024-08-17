@@ -59,6 +59,18 @@ button {
   font-size: 25px;
 }
 
+.or-text {
+  margin: 5%;
+}
+
+
+.content {
+  flex-grow: 1;
+  padding: 2%;
+  padding-left: 2%;
+  overflow: auto;
+}
+
 
 .comment-list {
   list-style: none;
@@ -133,6 +145,11 @@ button {
   height: 100%;
 }
 
+.logoutButton{
+  margin-bottom: 12%;
+}
+
+
 .checkbox-option-group {
   display: flex;
   flex-direction: column;
@@ -177,6 +194,12 @@ button {
 
 .dropdown-arrow-icon {
   cursor: pointer;
+}
+
+
+.verfication-notification-error.show {
+  right: 0%;
+  top: 4%;
 }
 
 .dropdown-menu {
@@ -224,31 +247,60 @@ button {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* Base styles for larger screens */
 
 /* Styles specific to iPhone 14 Pro Max */
 @media only screen and (max-width: 430px) {
   .top-banner {
     padding: 10px;
-    margin-top: 15px;
+    margin-top: 1px;
 
   }
 
+  .sidebar-text {
+    display: none;
+  }
+  
+  .ticket-detail {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 38%;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
 
   .top-banner-left h1,
   .top-banner-left h2 {
-    font-size: 16px;
+    font-size: 55%;
     margin-bottom: 0px;
     margin-top: 0px;
   }
 
+
   .top-banner-left img {
     width: 13px;
     height: 13px;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-right: 7px;
   }
 
+  .logoutButtonContainer {
+    margin-bottom: 48%;
+    padding: 5%;
+  }
 
   .user-info {
     flex-direction: column;
@@ -275,10 +327,21 @@ button {
 
   }
 
-  .sidebar {
-    width: 10%;
-  }
+  .logoutButton {
+    padding: 15%;
+    font-size: 80%;
 
+  }
+  
+  
+  .portalTitle {
+    color: #000;
+    font-size: 68%;
+    font-family: Poppins;
+    font-weight: 500;
+    margin-right: 5%;
+    text-align: center;
+  }
 
 
   .top-banner {
@@ -288,6 +351,11 @@ button {
 
   .top-banner-right h1 {
     display: none;
+  }
+
+  .redirectButtons {
+    padding: 0px;
+    padding-left: 23%;
   }
 
   .sidebar-item {
@@ -307,8 +375,8 @@ button {
   .sidebar-item img {
     width: 25px;
     height: 25px;
-    margin-right: 17px;
-    margin-left: -8px;
+    margin-right: 21px;
+    margin-left: -12px;
   }
 
   .sidebar-link {
@@ -318,8 +386,8 @@ button {
   }
 
   .sidebar {
-    width: 10%;
-    margin-top: 16%;
+    width: 17%;
+    margin-top: 13%;
   }
 
   .sidebar-link.active .sidebar-item {
@@ -380,8 +448,74 @@ button {
 
 .verfication-notification.show {
   right: 0;
+  top: 7%;
 }
 
 .verfication-notification-error.show {
   right: 0;
+}
+
+
+
+/* Example for tablets in landscape and portrait orientation */
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+  .request {
+    background-color: #fff;
+    padding: 5%;
+    width: 100%;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding-left: 5%;
+    margin-top: 6%;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 2%;
+  padding-left: 2%;
+  overflow: auto;
+  width: 92%;
+}
+
+.top-banner-left h1 {
+  color: #000;
+  font-size: 86%;
+  font-family: Poppins;
+  font-weight: 500;
+}
+
+.logoutButton {
+  margin-bottom: 0px;
+}
+
+.ticket-detail {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 87%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.portalTitle {
+  color: #000;
+  font-size: 19px;
+  font-family: Poppins;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 18%;
+}
+
+.bell-icon {
+  display: none;
+}
+
+.logoutButtonContainer {
+  padding: 0px 10px;
+  margin-bottom: 10%;
+}
+
+.top-banner-right h1{
+  display: none;
+}
 }
