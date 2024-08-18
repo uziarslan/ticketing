@@ -68,7 +68,7 @@ button {
   flex-grow: 1;
   padding: 2%;
   padding-left: 2%;
-  overflow: auto;
+  width: 100%;
 }
 
 
@@ -307,14 +307,14 @@ button {
 
   }
 
-  .ticket-detail {
+  /* .ticket-detail {
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
     width: 38%;
     box-sizing: border-box;
     overflow-x: auto;
-  }
+  } */
 
   .top-banner-left h1,
   .top-banner-left h2 {
@@ -469,8 +469,7 @@ button {
     flex-grow: 1;
     padding: 2%;
     padding-left: 2%;
-    overflow: auto;
-    width: 92%;
+    width: 100%;
   }
 
   .top-banner-left h1 {
@@ -484,14 +483,14 @@ button {
     margin-bottom: 0px;
   }
 
-  .ticket-detail {
+  /* .ticket-detail {
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
     width: 87%;
     box-sizing: border-box;
     overflow-x: auto;
-  }
+  } */
 
   .portalTitle {
     color: #000;

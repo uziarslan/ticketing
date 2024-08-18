@@ -9,17 +9,21 @@ import authService from "../services/authService";
 
 const AdminPortal = () => {
   const [content, setContent] = useState("request");
+  const [burgerOpen, setBurgerOpen] = useState(false);
   const { admin } = useContext(AuthContext);
 
   return (
     <div className="homepage">
       <Sidebar
         title="Admin Portal"
+        burgerOpen={burgerOpen}
         setContent={setContent}
         selectedTab={content}
       />
       <div className="main-content">
         <TopBanner
+          burgerOpen={burgerOpen}
+          setBurgerOpen={setBurgerOpen}
           title="Wasserman Staff Tech Support & Event Setup"
           user={admin}
           logout={authService.logout}

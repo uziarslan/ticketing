@@ -19,14 +19,16 @@ h2 {
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
-    width: 100%;
+    /* width: 100%; */
     box-sizing: border-box;
     overflow-x: auto;
 }
 
 .ticket-detail table {
     width: 100%;
-    border-collapse: collapse;
+    min-width: 900px;
+    /* overflow-x: scroll; */
+    /* border-collapse: collapse; */
 }
 
 .mandatory {
@@ -76,7 +78,7 @@ h2 {
 .content {
     flex-grow: 1;
     padding: 20px;
-    overflow: auto;
+    width: 100%
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap');
