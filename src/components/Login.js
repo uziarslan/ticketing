@@ -18,8 +18,8 @@ const Login = () => {
   const { login, register, isLoading } = useContext(AuthContext);
 
   const handleHomeClick = () => {
-    window.location.href = "/"
-  }
+    window.location.href = "/";
+  };
 
   const handleOtp = async (e) => {
     e.preventDefault();
@@ -49,14 +49,14 @@ const Login = () => {
       await register({ username });
       setEmailSent(true);
     } catch (error) {
-      setMessage(error.response.data)
+      setMessage(error.response.data);
     }
   };
 
   return (
     <>
       <Navbar loginPage={true} />
-      <Flash message={message} />
+      <Flash message={message} setMessage={setMessage} />
       <div className="login-container">
         <div className="login-box">
           {isLoading && <Loader />}

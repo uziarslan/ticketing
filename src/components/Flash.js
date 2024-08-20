@@ -1,7 +1,10 @@
 import React from "react";
 import "../App.css";
 
-export default function Flash({ message }) {
+export default function Flash({ message, setMessage }) {
+  const closeFlash = () => {
+    setMessage("");
+  };
   return (
     <>
       <div
@@ -15,7 +18,7 @@ export default function Flash({ message }) {
       >
         <div className="check-icon">
           {message.error && (
-            <div className="check-icon">
+            <div onClick={closeFlash} className="check-icon">
               <svg
                 width="35"
                 height="35"

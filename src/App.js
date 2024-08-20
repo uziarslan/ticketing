@@ -11,6 +11,7 @@ import Contact from "./components/Contact";
 import Blog from "./components/Blog";
 import Service from "./components/Service";
 import WasserChat from "./components/WasserChat";
+import LoginCoat from "./components/LoginCoat";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/login-coat" element={<LoginCoat />} />
           <Route path="/service" element={<Service />} />
           <Route path="/wasser-chat" element={<WasserChat />} />
         </Routes>

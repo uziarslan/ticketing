@@ -35,7 +35,7 @@ const EmployeePortal = () => {
 
   return (
     <div className="homepage">
-      <Flash message={message} />
+      <Flash message={message} setMessage={setMessage} />
       <Sidebar
         burgerOpen={burgerOpen}
         title="Employee Portal"

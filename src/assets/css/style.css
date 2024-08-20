@@ -695,3 +695,138 @@ a:focus {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+#chatbot-container {
+  font-family: 'Arial', sans-serif;
+  background-color: #7b6c95;
+  /* Change as per your color scheme */
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid #553285;
+  /* Color matched with header background */
+  border-radius: 10px;
+  overflow: hidden;
+
+}
+
+#chatbot-header {
+  background-color: #553285;
+  /* Or any color that fits your theme */
+  color: white;
+  /* Choose a color that contrasts well with the background */
+  padding: 10px;
+  font-weight: bold;
+  font-size: 24px;
+  /* Adjust size as needed */
+  text-align: center;
+  border-top-left-radius: 10px;
+  /* Match the border radius of your chatbox */
+  border-top-right-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* Optional: Adds depth */
+  font-family: 'Arial', sans-serif;
+  /* Optional: Change font family as you like */
+}
+
+#chatbox {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  height: 650px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input area */
+#input-area {
+  display: flex;
+  margin-top: 10px;
+}
+
+#userInput {
+  flex-grow: 1;
+  border-radius: 15px;
+  border: none;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+button {
+  background-color: #553285;
+  /* Change as per your color scheme */
+  border: none;
+  border-radius: 15px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #412369;
+  /* Darker shade for hover effect */
+}
+
+/* Chat message bubbles */
+.chat-message {
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 18px;
+  margin-bottom: 8px;
+  position: relative;
+  font-size: 0.9em;
+}
+
+.user-message {
+  background-color: #553285;
+  /* Your chosen color for user messages */
+  color: white;
+  align-self: flex-end;
+}
+
+.chatbot-message {
+  background-color: #e0d7f5;
+  /* Lighter shade for chatbot messages */
+  color: #333;
+  align-self: flex-start;
+}
+
+/* Tail-like shapes on the chat bubbles - using CSS after pseudo-elements */
+.user-message:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: #553285;
+  border-bottom-left-radius: 15px;
+}
+
+.chatbot-message:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: #e0d7f5;
+  border-bottom-right-radius: 15px;
+}
+
+/* Ensure bubbles don't overlap tails */
+.chat-message:after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  bottom: 0;
+  right: -10px;
+  /* Adjust this for user messages */
+  background-color: #ffffff;
+  /* Match chatbox background color */
+}

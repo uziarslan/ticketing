@@ -15,17 +15,16 @@ import "datatables.net-bs5/js/dataTables.bootstrap5.min.js";
 import "datatables.net-buttons/js/dataTables.buttons.min.js";
 import "datatables.net-buttons/js/buttons.html5.min.js";
 import "datatables.net-buttons/js/buttons.colVis.min.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Service = () => {
   const [currentTable, setCurrentTable] = useState("");
-  //   const [showCoatTable, setShowCoatTable] = useState(false);
-  //   const [showBorrowTable, setShowBorrowTable] = useState(false);
   const [coatDb, setCoatDb] = useState([]);
   const [borrowDb, setBorrowDb] = useState([]);
-
   const [netId, setNetId] = useState("");
   const [coatNumber, setCoatNumber] = useState("");
+  const rentUser = localStorage.getItem("rentUser");
+  const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
   const numberOfResults = 25;
@@ -34,6 +33,10 @@ const Service = () => {
   const indexOfFirstItem = indexOfLastItem - numberOfResults;
   const currentCoatDb = coatDb.slice(indexOfFirstItem, indexOfLastItem);
   const currentBorrowDb = borrowDb.slice(indexOfFirstItem, indexOfLastItem);
+
+  useEffect(() => {
+    if (!rentUser) return navigate("/login-coat");
+  }, [navigate, rentUser]);
 
   const fetch_coat = async () => {
     try {
