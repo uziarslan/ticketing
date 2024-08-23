@@ -260,6 +260,10 @@ h2 {
     border-radius: 5px;
 }
 
+.exploreMoreBtn:hover {
+    color: white;
+}
+
 label {
     display: block;
     color: #000;

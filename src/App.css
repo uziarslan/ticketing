@@ -69,6 +69,7 @@ button {
   padding: 2%;
   padding-left: 2%;
   width: 100%;
+  overflow-y: scroll;
 }
 
 
